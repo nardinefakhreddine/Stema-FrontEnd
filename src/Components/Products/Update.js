@@ -17,10 +17,18 @@ function Update() {
     const [products, setProducts] = useState([]);
     const match = useRouteMatch('/product/update/:id');
     const productID = match.params.id;
-
+    const Token = window.localStorage.adminsToken;
     useEffect(
         () => {
-            axios.get("http://localhost:8000/api/product/getScores").then(
+            axios.get("http://localhost:8000/api/product/getScores",
+                {
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                       Authorization: 'Bearer ' + Token,
+                
+                    }
+            }).then(
                 (response) => {
                     setScores(response.data)
                 }
@@ -31,7 +39,17 @@ function Update() {
             )
 
 
-            axios.get("http://localhost:8000/api/product/edit/" + productID).then(
+            axios.get("http://localhost:8000/api/product/edit/" + productID,
+                {
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                       Authorization: 'Bearer ' + Token,
+                
+                    }
+            }
+            
+            ).then(
                 (response) => {
                     setBareCode(response.data.barecode);
                     setName(response.data.name);
@@ -93,7 +111,7 @@ function Update() {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    //Authorization: `Bearer ${localStorage.adminsToken}`
+                    Authorization: `Bearer ${localStorage.adminsToken}`
                 }
             }
 

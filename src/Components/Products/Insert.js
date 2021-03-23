@@ -5,10 +5,17 @@ import axios from "axios";
 function InsertProduct(){
     const [scores, setScores] = useState([]);
     let history = useHistory();
-
+    const Token = window.localStorage.adminsToken;
     useEffect(
         () => {
-            axios.get("http://localhost:8000/api/product/getScores").then(
+            axios.get("http://localhost:8000/api/product/getScores", {
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                   Authorization: 'Bearer ' + Token,
+            
+                }
+            }).then(
                 (response) => {
                     setScores(response.data)
                 }
@@ -60,7 +67,7 @@ function InsertProduct(){
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                   // Authorization: `Bearer ${localStorage.adminsToken}`
+                    Authorization: `Bearer ${localStorage.adminsToken}`
                 }
             }
         ).then(response => {

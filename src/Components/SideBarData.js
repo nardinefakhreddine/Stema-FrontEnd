@@ -7,7 +7,13 @@ export const Data = [
     
     {
         title: 'Profile',
-        path: '/schooladmin/teachers',
+        path: '/profile',
+        icon: <IoIcons.IoMdPeople />,
+        cname: 'nav-text'
+    },
+    {
+        title: 'Admins',
+        path: '/admin',
         icon: <IoIcons.IoMdPeople />,
         cname: 'nav-text'
     },
@@ -25,20 +31,20 @@ export const Data = [
     },
     {
         title: 'Allergies',
-        path: '/schooladmin/sections',
+        path: '/allergy',
         icon: <AiIcons.AiFillBank />,
         cname: 'nav-text'
     },
     {
         title: 'Additives',
-        path: '/schooladmin/students',
+        path: '/additive',
         icon: <IoIcons.IoMdPeople />,
         cname: 'nav-text'
     },
 
     {
         title: 'PDF',
-        path: '/schooladmin/Pdf',
+        path: '/pdf',
         icon: <AiIcons.AiFillFilePdf />,
         cname: 'nav-text'
     }

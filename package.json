@@ -17,6 +17,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-st-modal": "^1.1.3",
+    "react-to-pdf": "0.0.13",
     "web-vitals": "^1.1.1"
   },
   "scripts": {

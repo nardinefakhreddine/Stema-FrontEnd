@@ -1,9 +1,10 @@
 import React from "react";
 import { Redirect } from 'react-router-dom';
 
-export const ProtectedRoute = (props) =>{
+export const ProtectedRoute = (props) => {
 
-    return localStorage.getItem('adminsToken')? <props.render/>:<Redirect to = '/'/>
+    return localStorage.getItem('adminsToken') ? <props.render /> : <Redirect to='/' />
+}
     // console.log(props)
     //     if(props.verified){
     //         if(localStorage.getItem('role')=='teacher'){
@@ -14,7 +15,7 @@ export const ProtectedRoute = (props) =>{
     //     }else{
     //         return <Redirect to = '/'/>
     //     }
-}
+
 // export const SchoolAdminProtectedRoute = (props) =>{
 
 //     if(props.verified){
