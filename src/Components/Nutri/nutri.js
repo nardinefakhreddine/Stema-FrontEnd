@@ -10,6 +10,7 @@ import * as RiIcons from 'react-icons/ri';
 import * as GiIcons from 'react-icons/gi';
 import ReactPaginate from 'react-paginate';
 import { Confirm } from 'react-st-modal';
+import { BiAddToQueue } from 'react-icons/bi';
 function Nutri(props){
    
 const [products, setProducts] = useState([]);
@@ -124,35 +125,30 @@ function handlePageChange (pageNumber) {;
     return (
 <div>
   <Navbar/>
-  <div class="container">
-
-                <div style={{ textAlign: 'center', display: 'flex', justifyContent: 'start' }}><div></div>
-                    <div style={{ width: '500px' }}>
-                    </div>
-                    <Link to="nutri/insert"><input type="button"  value="insert"class="input-group-text border-0" /></Link>
-                    <div class="input-group rounded" style={{ width: '200px' }}>
-                        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
-                            aria-describedby="search-addon" onChange={handleSearch} />
-                        <button class="input-group-text border-0" id="search-addon" style={{ width: '50px' ,height:'10'}} onClick={search}>
+  <div style={{ width: '900px', display: 'inline-flex',justifyContent:'space-between' }}>
+                
+                <Link to="nutri/insert" style={{color:'green',fontWeight:'bold'}}><BiAddToQueue style={{ fontSize: '20px', fontWeight: 'bold' }}></BiAddToQueue>add new</Link>
+               
+              <div style={{display:'inline-flex'}}>
+                <input type="search" class=" rounded" placeholder="Search..." aria-label="Search"
+                            aria-describedby="search-addon" onChange={handleSearch} style={{borderStyle:'none', borderBottomStyle:'solid',borderBottomColor:'red'}}/>
+                        <button class="input-group-text border-0" id="search-addon" style={{height:'10'}} onClick={search}>
                             <AiIcons.AiOutlineSearch />
-                        </button>
-                    </div>
-
-                    <div></div>
+                    </button>
+                   </div>
                 </div>
 
-                <div className="row justify-content-center" style={{ marginLeft: '10px' }} >
-
-                    <div class="col-md-20">
+                   
+                    <div  class="container" style={{marginTop:'5px'}}>
                            
                         <div className="card">
-                            <div className="card-title" style={{ textAlign: 'center',fontWeight:'bold' }}
+                            <div className="card-title" style={{ textAlign: 'center',fontWeight:'bold',justifyContent:'center', alignItems:'center' ,color:' rgba(233, 72, 28, 1)',fontSize:'50px' ,padding:'10px',borderRadius:'2px'}}
                             >All NUTRI FACTS</div>
 
                             <div class="card-body">
                                 <table class="table ">
                                     <thead>
-                                        <tr>
+                                        <tr style={{color:' rgba(233, 72, 28, 1)'}}>
 
                                             <th>#</th>
                                             <th>Name</th>
@@ -184,7 +180,7 @@ function handlePageChange (pageNumber) {;
                                                                 if (isConfirm) {onDelete(product.id)}
                                                             }
 
-                                                            } ><AiIcons.AiOutlineDelete  style={{color:'red'}}/></Link>
+                                                            } ><AiIcons.AiOutlineDelete  style={{color:' rgba(233, 72, 28, 1)'}}/></Link>
                                                         </td>
                                                     </tr>
                                                 )) :
@@ -214,8 +210,8 @@ function handlePageChange (pageNumber) {;
                         </div>
                     </div>
                 </div>
-            </div >
-</div>
+           
+
     )
 }
 export  default Nutri;

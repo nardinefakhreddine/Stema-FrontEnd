@@ -3,6 +3,7 @@ import { useRouteMatch } from 'react-router-dom';
 import { useHistory } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
+
 import { Navbar } from '../NavBar';
 export function EditAccount(props) {
     const adminID = window.localStorage.adminID;
@@ -105,7 +106,7 @@ export function EditAccount(props) {
             <div className="row justify-content-center">
                 <div className="col-md-8">
                     <div className="card">
-                        <div className="card-header" style={{ textAlign: 'center' }}>Edit Account</div>
+                        <div className="card" style={{ textAlign: 'center',fontWeight:'bold',justifyContent:'center', alignItems:'center' ,color:' rgba(233, 72, 28, 1)',fontSize:'50px' ,padding:'10px',borderRadius:'2px'}}>Edit Account</div>
                         <div className="card-body">
 
                             <form onSubmit={updateAccount}>
@@ -150,7 +151,7 @@ export function EditAccount(props) {
                                 <div className="form-group form-check">
 
                                 </div>
-                                <button type="submit" className="btn btn-primary" >Update</button>
+                                <button type="submit" className="btn btn-success" style={{width:'200px',marginTop:'20px'}}  >Update</button>
                             </form>
 
                         </div>

@@ -48,19 +48,20 @@ export function Navbar(props) {
 
     return (<>
         <div className="navbar">
-            <Link className="menu-bars" ><FaIcons.FaBars onClick={showSideBar} value={{ color: 'black' }}
+            <Link className="menu-bars" style={{color:'black'}} ><FaIcons.FaBars onClick={showSideBar} value={{ color: 'black' }}
             ></FaIcons.FaBars></Link>
             <div className="logo"><img src="/Stema-in-header.png" alt="logo" style={{ width: '50px', height: '50px' }} /></div>
-            <div style={{ cursor: 'pointer' }} onClick={(e) => handleLogout(e)}  > <AiIcons.AiOutlineLogout />Logout</div>
+            <div><img src="./nutriotionst-image.png"/></div>
+            {/* <div style={{ cursor: 'pointer' }} onClick={(e) => handleLogout(e)}  > <AiIcons.AiOutlineLogout />Logout</div> */}
         </div>
 
         <nav className={sidebar ? 'nav-menu active' : 'nav-menu'} id="nav-menu">
-            <IconContext.Provider value={{ color: "white", size: "2em" }} >
+            <IconContext.Provider value={{ color: "black", size: "2em" }} >
                 <ul className="nav-menu-items">
                     <li className="navbar-toggle">
                         <img src="/logo-stema.png" style={{borderRadius:'50%',width:'50px',height:'50px'}}/>
                         <Link className="menu-bars">
-                        <FaIcons.FaBars onClick={showSideBar} style={{ marginLeft: '90px', fontSize: '15px' }} />
+                        <AiIcons.AiOutlineClose onClick={showSideBar} style={{ marginLeft: '90px', fontSize: '15px' }} />
                         </Link>
                     </li>
                     {sidebar? Data.map((item, index) => {
@@ -70,9 +71,11 @@ export function Navbar(props) {
                                 <span>{item.title}</span>
                             </Link>
                         </li>
+                           
                         )
+                       
                     }):null}
-                   
+                    {/* <li style={{ listStyle:'none'}}><div onClick={(e) => handleLogout(e)}  > <AiIcons.AiOutlineLogout />Logout</div> </li> */}
                 </ul>
             </IconContext.Provider>
         </nav>

@@ -55,9 +55,10 @@ function Update() {
                     setName(response.data.name);
                     setBrand(response.data.brand);
                     setDesc(response.data.description);
-                    setImage(response.data.image);
+                   // setImage(response.data.image);
                     setScore(response.data.score_id);
                     setScoreName(response.data.scores.name)
+                    setPrice(response.data.price)
                 }
             ).catch(
                 (error) => {
@@ -90,24 +91,32 @@ function Update() {
         setDesc(e.target.value);
     }
 
-    function handleImage(e) {
-        setImage(e.target.value);
+    function handleImage(file) {
+        setImage(file[0]);
+    }
+    const [price, setPrice] = useState('');
+    function handlePrice(e) {
+        setPrice(e.target.value);
     }
     /**update  */
     function onUpdate(event) {
-        event.preventDefault();
-        axios.put("http://localhost:8000/api/product/update/" + productID, {
-            barecode: barecode,
-            name: name,
-            brand: brand,
-            description: description,
-            score_id: score,
-            image: image
-
-
-        },
-
+        
+      
+      
+          event.preventDefault();
+        axios.put("http://localhost:8000/api/product/update/" + productID, 
+          
             {
+                name: name,
+                barecode: barecode,
+                description: description,
+                price: price,
+                score_id: score,
+                brand:brand
+}
+
+        
+           , {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
@@ -137,7 +146,7 @@ function Update() {
             <div className="row justify-content-center">
                 <div className="col-md-8">
                     <div className="card">
-                        <div className="card-header">Edit Product</div>
+                        <div style={{ textAlign: 'center',fontWeight:'bold',justifyContent:'center', alignItems:'center' ,color:' rgba(233, 72, 28, 1)',fontSize:'50px' ,padding:'10px',borderRadius:'2px'}} >Edit Product</div>
                         <div className="card-body">
 
                             <form onSubmit={onUpdate} >
@@ -163,6 +172,15 @@ function Update() {
                                 </div>
                                 <div className="form-group">
 
+<input type="text"
+   value={price}
+    name="price"
+    onChange={handlePrice}
+    className="form-control"
+    placeholder="price" />
+</div>
+                                <div className="form-group">
+
                                     <input type="text"
                                         required
                                         name="brand"
@@ -181,16 +199,7 @@ function Update() {
                                         className="form-control"
                                         placeholder="description" />
                                 </div>
-                                <div className="form-group">
-
-                                    <input type="text"
-                                        required
-                                        name="image"
-                                        value={image}
-                                        onChange={handleImage}
-                                        className="form-control"
-                                        placeholder="image" />
-                                </div>
+                              
 
 
                                 <div className="form-group">
@@ -221,7 +230,7 @@ function Update() {
                                 <div className="form-group form-check">
 
                                 </div>
-                                <button type="submit" className="btn btn-primary">Save</button>
+                                <button type="submit" className="btn btn-success" style={{width:'200px',marginTop:'20px'}}>Save</button>
                             </form>
 
                         </div>

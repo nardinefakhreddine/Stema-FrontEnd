@@ -63,7 +63,7 @@ setUsername(e.target.value);
           onChange={handleUser}
           
           />
-      <input type="text"
+      <input type="password"
        id="password"
         className="fadeIn third"
          name="login"
@@ -72,10 +72,10 @@ setUsername(e.target.value);
           onChange={handlePassword}
           
           />
-      <input type="submit" className="fadeIn fourth" value="Log In" onClick={submitState}/>
+            <input type="submit" className="fadeIn fourth btn-success" value="Log In" onClick={submitState} />
     </form>
     <div id="formFooter">
-      <Link className="underlineHover" href="#">Forgot Password?</Link>
+      <Link className="underlineHover" href="#" >Forgot Password?</Link>
     </div>
 </div>
 </div>   )

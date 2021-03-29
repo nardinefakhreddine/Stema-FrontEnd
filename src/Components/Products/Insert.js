@@ -47,27 +47,37 @@ function InsertProduct(){
     function handleDesc(e) {
         setDesc(e.target.value);
     }
-    const [image, setImage] = useState();
-    function handleImage(e) {
-        setImage(e.target.value);
+    const [price, setPrice] = useState('');
+    function handlePrice(e) {
+        setPrice(e.target.value);
     }
-    function handleFormSubmit(event){
+    const [image, setImage] = useState();
+    function handleImage(file) {
+        setImage(file[0]);
+    }
+    function handleFormSubmit(event) {
+        const fd = new FormData();
+      
+      fd.append('image', image);
+        fd.append('barecode', barecode);
+        fd.append('name', name);
+        fd.append('brand', brand);
+        fd.append('score_id', score);
+        fd.append('description', description);
+        fd.append('price',price);
         event.preventDefault();
-        axios.post('http://localhost:8000/api/product/create',
-            {
-                barecode: barecode,
-                name: name,
-                brand: brand,
-                description: description,
-                score_id: score,
-                image:image
+        axios.post('http://localhost:8000/api/product/create', 
+            fd
+            
+           
+           ,
 
-            },
+        
             {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    Authorization: `Bearer ${localStorage.adminsToken}`
+                  //  Authorization: `Bearer ${localStorage.adminsToken}`
                 }
             }
         ).then(response => {
@@ -92,7 +102,8 @@ function InsertProduct(){
     }
 
     
-    console.log([barecode,name,brand,description,score])
+  //  console.log([barecode,name,brand,description,score])
+  
     return (
         <div>
         <Navbar/>
@@ -100,14 +111,14 @@ function InsertProduct(){
             <div className="row justify-content-center">
                 <div className="col-md-8">
                     <div className="card">
-                        <div className="card-header">Add New Product</div>
+                        <div className="card" style={{ textAlign: 'center',fontWeight:'bold',justifyContent:'center', alignItems:'center' ,color:' rgba(233, 72, 28, 1)',fontSize:'50px' ,padding:'10px',borderRadius:'2px'}}>Add New Product</div>
                         <div className="card-body">
 
-                            <form  onSubmit={handleFormSubmit}>
+                            <form  onSubmit={handleFormSubmit} enctype="multipart/form-data" >
                                 <div className="form-group">
 
                                     <input type="text"
-                                        required
+                                     
                                         name="name"
                                         onChange={handleBareCode}
                                         className="form-control"
@@ -116,17 +127,26 @@ function InsertProduct(){
                                 <div className="form-group">
 
                                     <input type="text"
-                                        required
+                                       
                                         name="email"
                                         onChange={handleName}
                                         className="form-control"
                                         placeholder="name" />
-                                </div>
+                                    </div>
+                                    <div className="form-group">
+
+<input type="text"
+   
+    name="price"
+    onChange={handlePrice}
+    className="form-control"
+    placeholder="price" />
+</div>
                                 <div className="form-group">
 
                                     <input type="text"
-                                        required
-                                        name="password"
+                                     
+                                        name="brand"
                                         onChange={handleBrand}
                                         className="form-control"
                                         placeholder="brand" />
@@ -134,18 +154,18 @@ function InsertProduct(){
                                 <div className="form-group">
                              
                                 <input type="text"
-    required
-    name="password"
+   
+    name="description"
     onChange={handleDesc}
     className="form-control"
     placeholder="description" />
                                     </div>
                                     <div className="form-group">
 
-<input type="text"
-    required
+<input type="file"
+    id='image'
     name="image"
-    onChange={handleImage}
+    onChange={(e)=>handleImage(e.target.files)}
     className="form-control"
     placeholder="image" />
 </div>
@@ -177,7 +197,7 @@ function InsertProduct(){
                                 <div className="form-group form-check">
 
                                 </div>
-                                <button type="submit" className="btn btn-primary">Save</button>
+                                <button type="submit" className="btn btn-success" style={{width:'200px',marginTop:'20px'}}>Save</button>
                             </form>
 
                         </div>

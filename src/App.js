@@ -21,6 +21,7 @@ import { EditAccount } from './Components/Admins/update';
 import ProductNutri from './Components/Products/product_nutri';
 import ProductAllergy from './Components/Products/product_allergy';
 import ProductAdditive from './Components/Products/product_additive';
+import InsertAdmin from './Components/Admins/insertAdmin';
 function App() {
   const token=localStorage.adminsToken;
   return (
@@ -34,7 +35,7 @@ function App() {
    {/**Admins*/}
   <ProtectedRoute exact path="/profile" render={(props) => <Profile {...props} />} />
   <ProtectedRoute exact path="/admin/editAccount/:id" render={(props) => <EditAccount {...props} />} />
-
+  <ProtectedRoute exact path="/admin/insert" render={(props) => <InsertAdmin {...props} />} />
    {/**Products*/}
   <ProtectedRoute exact path="/home" render={(props) => <Home {...props} />} />
   <ProtectedRoute exact path="/product/insert" render={(props) => <InsertProduct {...props} />} />

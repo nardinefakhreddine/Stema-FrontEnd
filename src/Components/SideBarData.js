@@ -3,6 +3,7 @@ import * as AiIcons from 'react-icons/ai';
 import * as IoIcons from 'react-icons/io';
 import * as RiIcons from 'react-icons/ri';
 import * as GiIcons from 'react-icons/gi';
+import * as FiIcons from 'react-icons/fi';
 export const Data = [
     
     {
@@ -11,12 +12,7 @@ export const Data = [
         icon: <IoIcons.IoMdPeople />,
         cname: 'nav-text'
     },
-    {
-        title: 'Admins',
-        path: '/admin',
-        icon: <IoIcons.IoMdPeople />,
-        cname: 'nav-text'
-    },
+    
     {
         title: 'Products',
         path: '/home',
@@ -26,19 +22,19 @@ export const Data = [
     {
         title: 'Nutri-Facts',
         path: '/nutri',
-        icon: <RiIcons.RiAccountPinCircleFill />,
+        icon: <FiIcons.FiPackage />,
         cname: 'nav-text'
     },
     {
         title: 'Allergies',
         path: '/allergy',
-        icon: <AiIcons.AiFillBank />,
+        icon: <FiIcons.FiSunset />,
         cname: 'nav-text'
     },
     {
         title: 'Additives',
         path: '/additive',
-        icon: <IoIcons.IoMdPeople />,
+        icon: <IoIcons.IoIosAddCircle/>,
         cname: 'nav-text'
     },
 
@@ -46,6 +42,12 @@ export const Data = [
         title: 'PDF',
         path: '/pdf',
         icon: <AiIcons.AiFillFilePdf />,
+        cname: 'nav-text'
+    },
+    {
+        title: 'Logout',
+        path: '',
+        icon: <AiIcons.AiOutlineLogout />,
         cname: 'nav-text'
     }
 ];

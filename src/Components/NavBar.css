@@ -3,7 +3,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: whitesmoke;
+  background: rgb(18, 137, 74);
+  background: linear-gradient(
+    90deg,
+    rgba(18, 137, 74, 1) 7%,
+    rgba(252, 220, 89, 1) 45%,
+    rgba(251, 180, 66, 1) 67%,
+    rgba(232, 72, 27, 1) 93%
+  );
   margin-bottom: 50px;
 }
 .menu-bars {
@@ -17,7 +24,6 @@
   }
 }
 .nav-menu {
-  z-index: 1;
   width: 250px;
   height: 100vh;
   display: flex;
@@ -32,6 +38,7 @@
     rgba(18, 137, 74, 1) 0%,
     rgba(252, 232, 89, 0.6488970588235294) 100%
   );
+  z-index: 999;
 }
 
 .nav-menu.active {
@@ -58,7 +65,7 @@
   border-radius: 4px;
 }
 .nav-text a:hover {
-  background-color: #b4cae4;
+  background-color: #7ec743;
   color: black;
   text-decoration: none;
 }

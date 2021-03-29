@@ -10,8 +10,10 @@ import * as RiIcons from 'react-icons/ri';
 import * as GiIcons from 'react-icons/gi';
 import ReactPaginate from 'react-paginate';
 import { Confirm } from 'react-st-modal';
+import { IconBase } from "react-icons/lib";
+import {BiAddToQueue} from 'react-icons/bi'
 function Home(props){
-   
+    const [p, setP] = useState(false);
 const [products, setProducts] = useState([]);
 const Token = window.localStorage.adminsToken;
 const url = "http://localhost:8000/api/product/getAll";
@@ -37,7 +39,7 @@ useEffect(
             }
         )
     }
-    , [del]);
+    , [del,p]);
     
     
     
@@ -51,7 +53,7 @@ const [pageRangeDisplayed, setPageRangeDisplayed] = useState();
 function handlePageChange (pageNumber) {;
     setActivePage(pageNumber);
 
-    axios.get('http://localhost:8000/api/product/getAll?page='+ pageNumber,{
+    axios.get(`${process.env.REACT_APP_HOST}:${process.env.REACT_APP_PORT}/api/product/getAll?page=`+ pageNumber,{
         headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
@@ -122,42 +124,56 @@ function handlePageChange (pageNumber) {;
 /**End Delete */
 
     return (
-<div>
-  <Navbar/> 
-  <div class="container">
-
-                <div style={{ textAlign: 'center', display: 'flex', justifyContent: 'start' }}><div></div>
-                    <div style={{ width: '500px' }}>
-                    </div>
-                    <Link to="product/insert"><input type="button"  value="insert"class="input-group-text border-0" /></Link>
-                    <div class="input-group rounded" style={{ width: '200px' }}>
-                        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
-                            aria-describedby="search-addon" onChange={handleSearch} />
-                        <button class="input-group-text border-0" id="search-addon" style={{ width: '50px' ,height:'10'}} onClick={search}>
+<div >
+            <Navbar />
+          
+            <div style={{ width: '900px', display: 'inline-flex',justifyContent:'space-between' }}>
+                
+                <Link to="product/insert"><BiAddToQueue style={{ fontSize: '20px', fontWeight: 'bold', color:'green' }}></BiAddToQueue><b style={{color:'green'}}>add new</b></Link>
+               
+              <div style={{display:'inline-flex'}}>
+                <input type="search" class=" rounded" placeholder="Search..." aria-label="Search"
+                            aria-describedby="search-addon" onChange={handleSearch} style={{borderStyle:'none', borderBottomStyle:'solid',borderBottomColor:'red'}} />
+                        <button class="input-group-text border-0" id="search-addon" style={{height:'10'}} onClick={search}>
                             <AiIcons.AiOutlineSearch />
-                        </button>
-                    </div>
-
-                    <div></div>
+                    </button>
+                   </div>
                 </div>
+              
+                
+            {/* <div> */}
+            {/* <div style={{display:'flex' , justifyContent:'flex-start'}} > */}
+                        {/*  */}
+                {/* </div> 
+                    <div class="input-group rounded" >
+                       
+                </div>
+               */}
+                {/* </div> */}
+
+
+                        <div class="container" style={{marginTop:'5px'}}>
 
                 <div className="row justify-content-center" style={{ marginLeft: '10px' }} >
 
                     <div class="col-md-20">
                            
                         <div className="card">
-                            <div className="card-title" style={{ textAlign: 'center',fontWeight:'bold' }}
-                            >All Products</div>
+                           <div onClick={()=>setP(!p)} className="card-title" style={{ textAlign: 'center',fontWeight:'bold',justifyContent:'center', alignItems:'center' ,color:' rgba(233, 72, 28, 1)',fontSize:'50px' ,padding:'10px',borderRadius:'2px',cursor:'pointer'}}
+                            >Products</div>
 
                             <div class="card-body">
                                 <table class="table ">
                                     <thead>
-                                        <tr>
+                                        <tr style={{color:'rgba(233, 72, 28, 1)'}}>
 
                                             <th>#</th>
+                                            <th>Image</th>
                                             <th>Bare Code</th>
+                                            
                                             <th>Name</th>
-                                            <th>Description</th>
+                                            <th>Details</th>
+                                            <th>Price</th>
                                             <th>Brand</th>
                                             <th>Score</th>
                                             <th>Nutri-Facts</th>
@@ -175,23 +191,28 @@ function handlePageChange (pageNumber) {;
 
                                                         <td name="product_id" >
                                                             {product.id}</td>
+                                                        <td name="product_image">
+                                                            <img src={`http://localhost:8000/storage/${product.image}`} style={{borderRadius:'50%', width:'50px',height:'50px'}}/>
+                                                        </td>
                                                             <td name="product_id" >
                                                             {product.barecode}</td>
 
                                                         <td name="product_name"
                                                             > {product.name}</td>
                                                         <td name="product_description" 
-                                                            > {product.description}</td>
+                                                        > {product.description}</td>
+                                                        <td name="product_description" 
+                                                            > 4500 L.L</td>
                                                         <td name="product_brand" 
                                                             >{product.brand}</td>
                                                         <td name="product_score" 
                                                             > {product.scores.name}</td>
                                                         <td name="product_nutri" 
-                                                             ><Link to={`product_nutri/${product.id}`}>nutri-facts</Link></td>
+                                                             ><Link to={`product_nutri/${product.id}`}><b style={{color:'green',textDecoration:'underline'}}>nutri-facts</b></Link></td>
                                                                <td name="product_allergy"
-                                                            ><Link  to={`product_allergy/${product.id}`}>Allergies</Link></td>
+                                                            ><Link  to={`product_allergy/${product.id}`}><b style={{color:'green',textDecoration:'underline'}}>Allergies</b></Link></td>
                                                               <td name="product_additives"
-                                                            ><Link to={`product_additive/${product.id}`}>Additives</Link></td>
+                                                            ><Link to={`product_additive/${product.id}`}><b style={{color:'green',textDecoration:'underline'}}>Additives</b></Link></td>
                                                       
 
                                                         <td>
@@ -201,7 +222,7 @@ function handlePageChange (pageNumber) {;
                                                                 if (isConfirm) {onDelete(product.id)}
                                                             }
 
-                                                            } ><AiIcons.AiOutlineDelete  style={{color:'red'}}/></Link>
+                                                            } ><AiIcons.AiOutlineDelete  style={{color:'rgba(233, 72, 28, 1)'}}/></Link>
                                                         </td>
                                                     </tr>
                                                 )) :
@@ -232,6 +253,11 @@ function handlePageChange (pageNumber) {;
                     </div>
                 </div>
             </div >
+            <div>
+           
+
+
+            </div>
 </div>
     )
 }
